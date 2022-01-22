@@ -11,10 +11,14 @@ from selenium.webdriver.support.ui import WebDriverWait
 
 from selenium.webdriver.chrome.service import Service
 
+'''
+ot16908
+임태균94
+'''
 
 def startCwal(id, pwd):
     # Crawling Target URL
-    URL = 'https://naver.com'
+    URL = 'http://www.대출스타.net/'
 
     service = Service("./driver/chromedriver")
     driver = webdriver.Chrome(service=service)

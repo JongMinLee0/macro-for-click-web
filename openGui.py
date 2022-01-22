@@ -7,6 +7,8 @@ import threading
 import tkinter as tk
 from tkinter.scrolledtext import ScrolledText
 from tkinter import ttk, VERTICAL, HORIZONTAL, N, S, E, W
+import tkinter.messagebox as msgbox
+from startCrawling import *
 
 
 logger = logging.getLogger(__name__)
@@ -120,6 +122,13 @@ class FormUi:
         # Get info
         id = self.id.get()
         password = self.password.get()
+        if not id:
+            msgbox.showwarning("주 의", "아이디를 입력해주세요.")
+            return
+        elif not password:
+            msgbox.showwarning("주 의", "비밀번호를 입력해주세요.")
+            return
+        startCwal(id, password)
         # logger.log(lvl, self.message.get())
 
     def stop_event(self):
