@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import datetime
 import queue
 import logging
@@ -69,8 +70,9 @@ class ConsoleUi:
         self.scrolled_text.tag_config('DEBUG', foreground='gray')
         self.scrolled_text.tag_config('WARNING', foreground='orange')
         self.scrolled_text.tag_config('ERROR', foreground='red')
-        self.scrolled_text.tag_config('CRITICAL', foreground='red', underline=1)
-        
+        self.scrolled_text.tag_config(
+            'CRITICAL', foreground='red', underline=1)
+
         # Create a logging handler using a queue
         self.log_queue = queue.Queue()
         self.queue_handler = QueueHandler(self.log_queue)
@@ -104,18 +106,22 @@ class ConsoleUi:
 class FormUi:
     def __init__(self, frame):
         self.frame = frame
-        # Create a text field 
+        # Create a text field
         self.id = tk.StringVar()
         self.password = tk.StringVar()
         ttk.Label(self.frame, text='아이디:').grid(column=0, row=0, sticky=W)
         ttk.Label(self.frame, text='비밀번호:').grid(column=0, row=1, sticky=W)
-        ttk.Entry(self.frame, textvariable=self.id, width=25).grid(column=1, row=0, sticky=(W, E))
-        ttk.Entry(self.frame, textvariable=self.password, width=25).grid(column=1, row=1, sticky=(W, E))
-        
+        ttk.Entry(self.frame, textvariable=self.id, width=25).grid(
+            column=1, row=0, sticky=(W, E))
+        ttk.Entry(self.frame, textvariable=self.password,
+                  width=25).grid(column=1, row=1, sticky=(W, E))
+
         # Add a button to log the message
-        self.button = ttk.Button(self.frame, text='시작', command=self.start_event)
+        self.button = ttk.Button(
+            self.frame, text='시작', command=self.start_event)
         self.button.grid(column=1, row=2, sticky=W)
-        self.button = ttk.Button(self.frame, text='중지', command=self.stop_event)
+        self.button = ttk.Button(
+            self.frame, text='중지', command=self.stop_event)
         self.button.grid(column=2, row=2, sticky=W)
 
     def start_event(self):
@@ -132,16 +138,16 @@ class FormUi:
         # logger.log(lvl, self.message.get())
 
     def stop_event(self):
-        #stop event
+        # stop event
         id = self.id.get()
 
 
 class ThirdUi:
     def __init__(self, frame):
         self.frame = frame
-        ttk.Label(self.frame, text='아이디와 패스워드를 입력해주세요.').grid(column=0, row=1, sticky=W)
+        ttk.Label(self.frame, text='아이디와 패스워드를 입력해주세요.').grid(
+            column=0, row=1, sticky=W)
         # ttk.Label(self.frame, text='With another line here!').grid(column=0, row=4, sticky=W)
-
 
 
 class App:
@@ -169,7 +175,7 @@ class App:
         horizontal_pane.add(console_frame, weight=1)
         third_frame = ttk.Labelframe(vertical_pane, text="Info")
         vertical_pane.add(third_frame, weight=1)
-        
+
         # Initialize all frames
         self.form = FormUi(form_frame)
         self.console = ConsoleUi(console_frame)

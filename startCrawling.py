@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+import platform
 import selenium
 from selenium import webdriver
 from selenium.webdriver import ActionChains
@@ -16,10 +18,22 @@ ot16908
 임태균94
 '''
 
+
 def startCwal(id, pwd):
+    check_os = platform.system()
     # Crawling Target URL
     URL = 'http://www.대출스타.net/'
 
-    service = Service("./driver/chromedriver")
+    if check_os == "Darwin":
+        # for macbook pro
+        service = Service(r"/usr/local/bin/chromedriver")
+    else:
+        # for window
+        service = Service("./driver/chromedriver")
+
     driver = webdriver.Chrome(service=service)
     driver.get(url=URL)
+
+
+if __name__ == '__main__':
+    startCwal('123', '123')
